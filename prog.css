@@ -1,0 +1,61 @@
+#l{
+  color: black;
+  text-align: left;
+}
+#link{
+  text-align: center;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  width: 102px;
+  height: 50px;
+  font-size:25px;
+  transition:1.5s;
+}
+#button{
+  text-align: center;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  width: 102px;
+  height: 50px;
+  font-size:25px;
+  transition:1.5s;
+}
+#button:hover{
+  background-color: rgb(69, 5, 133);
+}
+#form{
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  width: 330px;
+  height: 50px;
+  font-size:25px;
+  transition: 1s;
+}
+#form:hover{
+background-color: rgb(69, 5, 133);
+}
+#formm{
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  width: 470px;
+  height: 50px;
+  font-size:25px;
+  transition: 1s;
+}
+#formm:hover{
+background-color: rgb(69, 5, 133);
+}
+.block1{
+  border-radius: 10px;
+  background-color: white;
+  margin: auto;
+  width: 650px;
+  height: 85%;
+  opacity: 0.8;
+  text-align: center;
+  color: black;
+}
