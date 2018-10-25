@@ -9,174 +9,126 @@
 </p>
 <pre>
 <?php
-$sum = 0;
-$i = 0;
-class Trapezium{
-  private $one;
-  private $two;
-  private $three;
-  private $four;
-  public function __construct($one,$two,$three,$four){
-    $this->one = $one;
-    $this->two=$two;
-    $this->three=$three;
-    $this->four=$four;
+
+class Trapezium {
+  private $ay;
+  private $by;
+  private $cy;
+  private $dy;
+
+  private $ax;
+  private $bx;
+  private $cx;
+  private $dx;
+
+  private $axbx;
+  private $ayby;
+  private $cxdx;
+  private $cydy;
+
+  private $ab;
+  private $bc;
+  private $cd;
+  private $ad;
+
+  public function __construct($one, $two, $three, $four) {
+    $this->ax = floor($one);
+    $this->bx = floor($two);
+    $this->cx = floor($three);
+    $this->dx = floor($four);
+
+    $this->ay = ($one - floor($one)) * 10;
+    $this->by = ($two - floor($two)) * 10;
+    $this->cy = ($three - floor($three)) * 10;
+    $this->dy = ($four - floor($four)) * 10;
+
+    $this->axbx = ($this->bx - $this->ax);
+    $this->ayby = ($this->by - $this->ay);
+    $this->cxdx = ($this->cx - $this->dx);
+    $this->cydy = ($this->cy - $this->dy);
+
+    $this->ab = (sqrt((pow($this->axbx, 2)) + (pow($this->ayby, 2))));
+    $this->bc = $this->cx - $this->bx;
+    $this->dc = (sqrt((pow($this->cxdx, 2)) + (pow($this->cydy, 2))));
+    $this->ad = $this->dx - $this->ax;
   }
-  public function getInfo(){
-    $a = $this->one;
-    $b = $this->two;
-    $c = $this->three;
-    $d = $this->four;
-    $a1 = floor($this->one);
-    $a2 = ($a - floor($a))*10;
-    $b1 = floor($b);
-    $b2 = ($b - floor($b))*10;
-    $c1 = floor($c);
-    $c2 = ($c - floor($c))*10;
-    $d1 = floor($d);
-    $d2 = ($d - floor($d))*10;
-    $a1b1 = ($b1 - $a1);
-    $a2b2 = ($b2 - $a2);
-    $ab = (sqrt((pow($a1b1, 2))+(pow($a2b2, 2))));
-    $c1d1 = ($c1-$d1);
-    $c2d2 = ($c2 - $d2);
-    $dc = (sqrt((pow($c1d1,2)+(pow($c2d2,2)))));
-    $ad = $d1 - $a1;
-    $bc = $c1 - $b1;
-    $P = $ad + $bc + $ab + $dc;
-    $h = $b2 - $a2;
-    if ($h<0){
-    $h = ($b2 - $a2)*-1;
-    }
-    else{
-      $h = ($b2 - $a2);
-    }
-    $S = 0.5*($ad + $bc)*$h;
-    $ab = "$ab";
-    $dc = "$dc";
-    if ($ab == $dc){
-      echo "Длины сторон:<br>","Сторона AD: $ad см<br>","Сторона BC: $bc см<br>","Сторона AB: ",round($ab,2)," см<br>","Сторона DC: ",round($dc,2)," см<br>";
-    }
-      else{
-        die;
+
+  private function getHeight() {
+    return abs($this->by - $this->ay);
+  }
+
+  public function getInfo() {
+    $this->ab = "$this->ab";
+    $this->dc = "$this->dc";
+
+    if ($this->ab == $this->dc) {
+      echo "Длины сторон:<br>","Сторона AD: $this->ad см<br>","Сторона BC: $this->bc см<br>","Сторона AB: ",round($this->ab,2)," см<br>","Сторона DC: ",round($this->dc,2)," см<br>";
+    } else {
       ?>
       <center>
-        <h1>Трапеция не равнобедренная!</h1>
+        <h1>Одна из трапеций не равнобедренная!</h1>
       </center>
       <?php
+      die;
     }
 
-        }
-  public function per(){
-    $a = $this->one;
-    $b = $this->two;
-    $c = $this->three;
-    $d = $this->four;
-    $a1 = floor($this->one);
-    $a2 = ($a - floor($a))*10;
-    $b1 = floor($b);
-    $b2 = ($b - floor($b))*10;
-    $c1 = floor($c);
-    $c2 = ($c - floor($c))*10;
-    $d1 = floor($d);
-    $d2 = ($d - floor($d))*10;
-    $a1b1 = ($b1 - $a1);
-    $a2b2 = ($b2 - $a2);
-    $ab = (sqrt((pow($a1b1, 2))+(pow($a2b2, 2))));
-    $c1d1 = ($c1-$d1)*-1;
-    $c2d2 = ($c2 - $d2)*-1;
-    $dc = (sqrt((pow($c1d1,2)+(pow($c2d2,2)))));
-    $ad = $d1 - $a1;
-    $bc = $c1 - $b1;
-    $P = $ad + $bc + $ab + $dc;
-    $h = $b2 - $a2;
-    if ($h<0){
-    $h = ($b2 - $a2)*-1;
-    }
-    else{
-      $h = ($b2 - $a2);
-    }
-    $S = 0.5*($ad + $bc)*$h;
-    if ($ab = $dc){
+  }
+
+  public function per() {
+
+    $P = $this->ad + $this->bc + $this->ab + $this->dc;
+
       return $P;
-    }
-      else{
-        die;
-      ?>
-      <center>
-        <h1>Трапеция не равнобедренная!</h1>
-      </center>
-      <?php
-    }
   }
-  public function square(){
-    $a = $this->one;
-    $b = $this->two;
-    $c = $this->three;
-    $d = $this->four;
-    $a1 = floor($this->one);
-    $a2 = ($a - floor($a))*10;
-    $b1 = floor($b);
-    $b2 = ($b - floor($b))*10;
-    $c1 = floor($c);
-    $c2 = ($c - floor($c))*10;
-    $d1 = floor($d);
-    $d2 = ($d - floor($d))*10;
-    $a1b1 = ($b1 - $a1);
-    $a2b2 = ($b2 - $a2);
-    $ab = (sqrt((pow($a1b1, 2))+(pow($a2b2, 2))));
-    $c1d1 = ($c1-$d1)*-1;
-    $c2d2 = ($c2 - $d2)*-1;
-    $dc = (sqrt((pow($c1d1,2)+(pow($c2d2,2)))));
-    $ad = $d1 - $a1;
-    $bc = $c1 - $b1;
-    $P = $ad + $bc + $ab + $dc;
-    $h = $b2 - $a2;
-    if ($h<0){
-    $h = ($b2 - $a2)*-1;
-    }
-    else{
-      $h = ($b2 - $a2);
-    }
-    $S = 0.5*($ad + $bc)*$h;
-    if ($ab = $dc){
+
+  public function square() {
+
+    $S = 0.5*($this->ad + $this->bc) * $this->getHeight();
+
       return $S;
-    }
-      else{
-        die;
-      }
-        ?>
-        <center>
-          <h1>Трапеция не равнобедренная!</h1>
-        </center>
-        <?php
-  }
 }
+}
+
 $trap1 = new Trapezium(10.5, 12.0, 18.0, 20.5);
 $trap2 = new Trapezium(0.0, 4.8, 9.8, 13.0);
 $trap3 = new Trapezium(0.0, 1.5, 9.5, 10.0);
 $trap4 = new Trapezium(0.0, 9.9, 11.9, 20.0);
 $trap5 = new Trapezium(0.0, 10.2, 40.2, 50.0);
+
 $trap1->getInfo($trap1);
 $trap2->getInfo($trap2);
 $trap3->getInfo($trap3);
 $trap4->getInfo($trap4);
 $trap5->getInfo($trap5);
-echo "Площадь первой трапеции: ",$trap1->square($trap1),"см<sup> 2</sup><br>";
-echo "Площадь второй трапеции: ",$trap2->square($trap2),"см<sup> 2</sup><br>";
-echo "Площадь третьей трапеции: ",$trap3->square($trap3),"см<sup> 2</sup><br>";
-echo "Площадь четвёртой трапеции: ",$trap4->square($trap4),"см<sup> 2</sup><br>";
-echo "Площадь пятой трапеции: ",$trap5->square($trap5),"см<sup> 2</sup><br>";
-$arr = array($trap1->square($trap1),$trap2->square($trap2),$trap3->square($trap3),$trap4->square($trap4),$trap5->square($trap5));
-foreach ($arr as $key => $value) {
-  $sum = $sum + $value;
-  $sr = $sum / count($arr);
+
+echo "Площадь первой трапеции: ",$trap1->square($trap1),"см<sup>2</sup><br>";
+echo "Площадь второй трапеции: ",$trap2->square($trap2),"см<sup>2</sup><br>";
+echo "Площадь третьей трапеции: ",$trap3->square($trap3),"см<sup>2</sup><br>";
+echo "Площадь четвёртой трапеции: ",$trap4->square($trap4),"см<sup>2</sup><br>";
+echo "Площадь пятой трапеции: ",$trap5->square($trap5),"см<sup>2</sup><br>";
+
+$squares = array(
+  $trap1->square($trap1),
+  $trap2->square($trap2),
+  $trap3->square($trap3),
+  $trap4->square($trap4),
+  $trap5->square($trap5)
+);
+
+$sum = 0;
+foreach ($squares as $square) {
+  $sum = $sum + $square;
 }
-foreach ($arr as $key => $value) {
-  if ($value > $sr){
+
+$sr = $sum / count($squares);
+
+$i = 0;
+foreach ($squares as $square) {
+  if ($square > $sr){
     $i++;
   }
 }
+
 echo "Средняя площадь всех трапеций: ",$sr,"см<sup> 2</sup><br>","Колличество трапеций,площадь которых<br>превышает среднюю площадь: ",$i;
 ?>
 </pre>
