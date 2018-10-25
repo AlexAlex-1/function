@@ -38,8 +38,8 @@ class Trapezium{
     $a1b1 = ($b1 - $a1);
     $a2b2 = ($b2 - $a2);
     $ab = (sqrt((pow($a1b1, 2))+(pow($a2b2, 2))));
-    $c1d1 = ($c1-$d1)*-1;
-    $c2d2 = ($c2 - $d2)*-1;
+    $c1d1 = ($c1-$d1);
+    $c2d2 = ($c2 - $d2);
     $dc = (sqrt((pow($c1d1,2)+(pow($c2d2,2)))));
     $ad = $d1 - $a1;
     $bc = $c1 - $b1;
@@ -52,19 +52,19 @@ class Trapezium{
       $h = ($b2 - $a2);
     }
     $S = 0.5*($ad + $bc)*$h;
-    if ($ab != $dc){
+    if ($ab = $dc){
+      echo "Длины сторон:<br>","Сторона AD: $ad см<br>","Сторона BC: $bc см<br>","Сторона AB: ",round($ab,2)," см<br>","Сторона DC: ",round($dc,2)," см<br>";
+    }
+      else{
+        die;
       ?>
       <center>
         <h1>Трапеция не равнобедренная!</h1>
       </center>
       <?php
-      die;
     }
-    else{
-      echo "Длины сторон:<br>","Сторона AD: $ad см<br>","Сторона BC: $bc см<br>","Сторона AB: ",round($ab,2)," см<br>","Сторона DC: ",round($dc,2)," см<br>";
-    }
-    return $S;
-  }
+
+        }
   public function per(){
     $a = $this->one;
     $b = $this->two;
@@ -95,16 +95,16 @@ class Trapezium{
       $h = ($b2 - $a2);
     }
     $S = 0.5*($ad + $bc)*$h;
-    if ($ab != $dc){
+    if ($ab = $dc){
+      return $P;
+    }
+      else{
+        die;
       ?>
       <center>
         <h1>Трапеция не равнобедренная!</h1>
       </center>
       <?php
-      die;
-    }
-    else{
-      return $P;
     }
   }
   public function square(){
@@ -137,24 +137,24 @@ class Trapezium{
       $h = ($b2 - $a2);
     }
     $S = 0.5*($ad + $bc)*$h;
-    if ($ab != $dc){
-      ?>
-      <center>
-        <h1>Трапеция не равнобедренная!</h1>
-      </center>
-      <?php    $a = $this->one;
-      die;
-    }
-    else{
+    if ($ab = $dc){
       return $S;
     }
+      else{
+        die;
+      }
+        ?>
+        <center>
+          <h1>Трапеция не равнобедренная!</h1>
+        </center>
+        <?php
   }
 }
 $trap1 = new Trapezium(10.5, 12.0, 18.0, 20.5);
-$trap2 = new Trapezium(0.0, 10.5, 40.5, 50.0);
+$trap2 = new Trapezium(0.0, 4.8, 9.8, 13.0);
 $trap3 = new Trapezium(0.0, 1.5, 9.5, 10.0);
 $trap4 = new Trapezium(0.0, 9.9, 11.9, 20.0);
-$trap5 = new Trapezium(0.0, 2.5, 5.5, 7.0);
+$trap5 = new Trapezium(0.0, 10.5, 40.5, 50.0);
 $trap1->getInfo($trap1);
 $trap2->getInfo($trap2);
 $trap3->getInfo($trap3);
